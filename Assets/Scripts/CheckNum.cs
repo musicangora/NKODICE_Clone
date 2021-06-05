@@ -11,22 +11,14 @@ public class CheckNum : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-
-    void Update()
+    public int GetNumber()
     {
-        if (_rb.IsSleeping())
-        {
-            var result = GetNumber(transform);
-            Debug.Log(result);
-        }
-    }
+        if (!_rb.IsSleeping()) return 0;
 
-    int GetNumber(Transform diceTransform)
-    {
         int result = 0;
 
         // ワールドのupをローカルに変換
-        Vector3 vector = diceTransform.InverseTransformDirection(Vector3.up);
+        Vector3 vector = transform.InverseTransformDirection(Vector3.up);
 
         if (isMaxX(vector)) result = (vector.x > 0f) ? 4 : 3;
         if (isMaxY(vector)) result = (vector.y > 0f) ? 5 : 2;
