@@ -11,18 +11,18 @@ public class CheckNum : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    public int GetNumber()
+    public string GetNumber()
     {
-        if (!_rb.IsSleeping()) return 0;
+        if (!_rb.IsSleeping()) return " ";
 
-        int result = 0;
+        string result = " ";
 
         // ワールドのupをローカルに変換
         Vector3 vector = transform.InverseTransformDirection(Vector3.up);
 
-        if (isMaxX(vector)) result = (vector.x > 0f) ? 4 : 3;
-        if (isMaxY(vector)) result = (vector.y > 0f) ? 5 : 2;
-        if (isMaxZ(vector)) result = (vector.z > 0f) ? 1 : 6;
+        if (isMaxX(vector)) result = (vector.x > 0f) ? "ち" : "う";
+        if (isMaxY(vector)) result = (vector.y > 0f) ? "ま" : "こ";
+        if (isMaxZ(vector)) result = (vector.z > 0f) ? "お" : "ん";
 
         return result;
     }

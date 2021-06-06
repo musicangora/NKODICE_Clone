@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private List<Rigidbody> rigidbodies = new List<Rigidbody>();
     private List<CheckNum> checkNums = new List<CheckNum>();
 
-    int[] numList = new int[5];
+    string[] numList = new string[5];
 
     // Start is called before the first frame update
     void Start()
@@ -68,10 +68,7 @@ public class GameManager : MonoBehaviour
             numList[i] = checknum.GetNumber();
             i++;
         }
-        if (numList.Sum() > 0)
-        {
-            Debug.Log(string.Join(", ", numList));
-        }
+     Debug.Log(string.Join(", ", numList));
      }
 
 }
