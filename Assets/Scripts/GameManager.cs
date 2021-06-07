@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject[] DicePrefabs;
+    public Text resultText;
+
     private List<Rigidbody> rigidbodies = new List<Rigidbody>();
     private List<CheckNum> checkNums = new List<CheckNum>();
+    private CalcComb calcComb;
 
-    string[] numList = new string[5];
+    private string[] numList = new string[5];
 
     // Start is called before the first frame update
     void Start()
     {
+        calcComb = GetComponent<CalcComb>();
+
         foreach (GameObject dicePrefab in DicePrefabs)
         {
             Reset(dicePrefab);
@@ -48,7 +54,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        GetNumArray();
+        var given_list = GetNumArray();
+        resultText.text = printResult(given_list);
         
     }
 
@@ -60,7 +67,7 @@ public class GameManager : MonoBehaviour
         gameObject.transform.position = _position;
     }
 
-    private void GetNumArray()
+    private List<string> GetNumArray()
     {
         var i = 0;
         foreach (var checknum in checkNums)
@@ -68,7 +75,21 @@ public class GameManager : MonoBehaviour
             numList[i] = checknum.GetNumber();
             i++;
         }
-     Debug.Log(string.Join(", ", numList));
+        return numList.ToList<string>();
      }
+
+    string printResult(List<string> givenList)
+    {
+        string chinko = calcComb.isChinko(givenList) ? "CHINKO " : " ";
+        string manko = calcComb.isManko(givenList) ? "MANKO " : " ";
+        string unko = calcComb.isUnko(givenList) ? "UNKO " : " ";
+        string ochinchin = calcComb.isOchinchin(givenList) ? "OCHINCHIN " : " ";
+
+        string printList = string.Join(", ", givenList.ToArray());
+        Debug.Log("与えられたリスト：" + printList);
+        Debug.Log("見つけた単語：" + chinko + manko + unko + ochinchin);
+
+        return chinko + manko + unko + ochinchin;
+    }
 
 }

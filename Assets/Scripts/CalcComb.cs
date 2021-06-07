@@ -30,28 +30,28 @@ public class CalcComb : MonoBehaviour
     }
 
 
-    bool isChinko(List<string> _givenList)
+    public bool isChinko(List<string> _givenList)
     {
         var _searchWord = "‚¿ ‚ñ ‚±";
         var _searchList = _searchWord.Split(' ');
         return searchList(_givenList, _searchList);
     }
 
-    bool isUnko(List<string> _givenList)
+    public bool isUnko(List<string> _givenList)
     {
         var _searchWord = "‚¤ ‚ñ ‚±";
         var _searchList = _searchWord.Split(' ');
         return searchList(_givenList, _searchList);
     }
 
-    bool isManko(List<string> _givenList)
+    public bool isManko(List<string> _givenList)
     {
         var _searchWord = "‚Ü ‚ñ ‚±";
         var _searchList = _searchWord.Split(' ');
         return searchList(_givenList, _searchList);
     }
 
-    bool isOchinchin(List<string> _givenList)
+    public bool isOchinchin(List<string> _givenList)
     {
         var _searchWord = "‚¨ ‚¿ ‚ñ ‚¿ ‚ñ";
         var _searchList = _searchWord.Split(' ');
